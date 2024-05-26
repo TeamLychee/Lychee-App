@@ -1,0 +1,24 @@
+$ 타임슬롯 참여자 선택 위해 해야할 것 
+
+//1. datetable에서 선택된 타임슬롯: timeSlot의 selectedBy를 가져온다.
+const timeSlot = dateTable[date][time][0];
+
+//2. 1의 selectedBy에 newSelectUser가 있는지 확인해서 추가 or 삭제된 새 배열 생성
+const newSelectedBy = updateSelectedBy(timeSlot.selectedBy, newSelectUser);
+
+//3. 2의 selectedBy를 다시 타임슬롯에 넣는다
+const updatedTimeSlot = updateSelectedByInTimeSlot(timeSlot,newSelectedBy);
+
+//4. 새로운 타임슬롯을 datetable에 넣는다.
+dateTable[updatedTimeSlot.date][updatedTimeSlot.time] = [updatedTimeSlot];
+
+/*
+$ 타임 슬롯 색깔 칠하기
+0. const len = selectedBy.length 구하기
+1. activeUser=='' : 
+    activeUser가 selectedBy에 있는지 확인하고 있으면 activeUser.userColor 쓰기
+2. 아닐 경우 :
+    len==0 : pass
+    len == 1: selectedBy[0].userColor 
+    len > 1 : len에 따라 짙어지는 색상 넣기 (만들어둔 util 사용)
+*/
